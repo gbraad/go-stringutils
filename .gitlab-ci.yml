@@ -1,0 +1,5 @@
+build:
+  image: fedora:26
+  script:
+    - dnf install -y golang
+    - go test
