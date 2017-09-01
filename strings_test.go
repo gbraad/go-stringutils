@@ -79,3 +79,23 @@ func TestGetMatcher(t *testing.T) {
 		}
 	}
 }
+
+func TestStartsWithMatcher(t *testing.T) {
+	var testCases = []struct {
+		testString     string
+		matcher        func(string) bool
+		expectedResult bool
+	}{
+		{"abc", StartsWithLetter, true},
+		{"abc", StartsWithNumber, false},
+		{"123", StartsWithLetter, false},
+		{"123", StartsWithNumber, true},
+	}
+
+	for _, testCase := range testCases {
+		actualResult := testCase.matcher(testCase.testString)
+		if actualResult != testCase.expectedResult {
+			t.Errorf("Unexpected result for '%s'. Expected '%s' to return '%t', but got '%t'", getFunctionName(testCase.matcher), testCase.testString, testCase.expectedResult, actualResult)
+		}
+	}
+}

@@ -14,15 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+package strings
+
 import (
 	"regexp"
-	"strings"
 )
 
 const (
-	lettersMatch       = "[a-zA-Z]+"
-	numbersMatch       = "[0-9]+"
-	signedNumbersMatch = "^[-+]?[0-9]+"
+	lettersMatch          = "[a-zA-Z]+"
+	numbersMatch          = "[0-9]+"
+	signedNumbersMatch    = "^[-+]?[0-9]+"
+	startsWithLetterMatch = "^[a-zA-Z]"
+	startsWithNumberMatch = "^[0-9]"
 )
 
 func checkForMatch(matcher string, strValue string) bool {
@@ -70,4 +73,14 @@ func GetOnlyNumbers(yourString string) string {
 // GetSignedNumbers returns a string containing only positive and negative numbers from given string
 func GetSignedNumbers(yourString string) string {
 	return getOnlyMatch(signedNumbersMatch, yourString)
+}
+
+// StartsWithLetter returns true when string contains a letter [a-zA-Z]
+func StartsWithLetter(yourString string) bool {
+	return checkForMatch(startsWithLetterMatch, yourString)
+}
+
+// StartsWithNumber returns true when string starts with a number [0-9]
+func StartsWithNumber(yourString string) bool {
+	return checkForMatch(startsWithNumberMatch, yourString)
 }
